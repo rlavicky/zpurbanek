@@ -756,6 +756,23 @@
       .contact-inner { grid-template-columns: 1fr; }
       .map-wrap { min-height: 260px; }
       .hero-stats { display: none; }
+
+      /* Recenze jako posuvník (swipe) – ať neroztahují stránku do strany */
+      .reviews-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 14px;
+        padding-bottom: 14px;
+        margin-bottom: 24px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .review-card {
+        flex: 0 0 82%;
+        scroll-snap-align: center;
+      }
+      .reviews-grid::-webkit-scrollbar { height: 6px; }
+      .reviews-grid::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
     }
 
     @media (max-width: 600px) {
@@ -1310,9 +1327,9 @@
           <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.1.1.3 0 .5l-.3.5-.3.3c-.1.1-.3.3-.1.5.1.3.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6 0 .9z"/></svg>
           WhatsApp
         </a>
-        <a href="mailto:zpurbanek@seznam.cz" class="social-link">
+        <a href="#poptavka" class="social-link">
           <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          Napsat e-mail
+          Napsat zprávu
         </a>
       </div>
     </div>
@@ -1322,7 +1339,7 @@
            Odesílá se přes službu FormSubmit.co (zdarma, bez registrace) přímo na e-mail.
            TODO pan Urbánek: při PRVNÍM odeslání přijde na e-mail aktivační odkaz od FormSubmit –
            stačí ho jednou potvrdit a formulář pak funguje. E-mail níže lze kdykoli změnit. -->
-      <form class="quote-form" action="https://formsubmit.co/zpurbanek@seznam.cz" method="POST">
+      <form id="poptavka" class="quote-form" action="https://formsubmit.co/zpurbanek@seznam.cz" method="POST">
         <h3>Nezávazná poptávka</h3>
         <p class="form-sub">Vyplňte a my se vám co nejdříve ozveme. Nacenění je zdarma.</p>
 
