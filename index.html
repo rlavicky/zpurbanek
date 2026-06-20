@@ -1352,6 +1352,8 @@
         <input type="hidden" name="_subject" value="Nová poptávka z webu – Zemní práce Urbánek" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_template" value="table" />
+        <!-- _next nastaví JavaScript automaticky podle aktuální adresy webu (funguje na github.io i na vlastní doméně) -->
+        <input type="hidden" name="_next" value="" />
         <input type="text" name="_honey" style="display:none" />
 
         <div class="field">
@@ -1364,7 +1366,7 @@
         </div>
         <div class="field">
           <label for="qf-email">E-mail</label>
-          <input id="qf-email" type="email" name="E-mail" placeholder="nepovinné" />
+          <input id="qf-email" type="email" name="email" placeholder="nepovinné" />
         </div>
         <div class="field">
           <label for="qf-msg">Popis zakázky *</label>
@@ -1446,6 +1448,14 @@
     document.querySelector('header').style.boxShadow =
       window.scrollY > 10 ? '0 2px 20px rgba(0,0,0,0.5)' : '0 2px 12px rgba(0,0,0,0.4)';
   });
+
+  /* ── Poptávka: po odeslání přesměrovat na děkovací stránku ── */
+  (function () {
+    const form = document.getElementById('poptavka');
+    if (!form) return;
+    const nextField = form.querySelector('input[name="_next"]');
+    if (nextField) nextField.value = new URL('dekujeme.html', window.location.href).href;
+  })();
 
   /* ── Lightbox galerie ── */
   const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
